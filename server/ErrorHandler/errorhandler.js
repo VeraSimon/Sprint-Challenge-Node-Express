@@ -1,27 +1,27 @@
 const errorHandler = (err, req, res, next) => {
     // err = [errorId, .catch(err)]
-    if(err.length !== 2) throw `'err' is missing elements. Please review: ${err}`;
+    if(err.length !== 2) throw `Uncaught Exception! Please review:\n${err}`;
     const errors = {
         h400: {
             "httpStatus": 400,
             "title": "Missing object properties",
             "description": "All object properties must be provided",
             "recoveryInstructions": "Please ensure all required object properties are in your request and try again.",
-            "errorOutput": err[1] === null ? "" : err[1]
+            "errorOutput": err[1]
         },
         h404: {
             "httpStatus": 404,
             "title": "Object not found",
             "description": "The server was unable to find the specified object",
             "recoveryInstructions": "Please ensure you specify an existing object and try again.",
-            "errorOutput": err[1] === null ? "" : err[1]
+            "errorOutput": err[1]
         },
         h500: {
             "httpStatus": 500,
             "title": "Database error",
             "description": "The server is having trouble communicating with the database",
             "recoveryInstructions": "Please provide the server administrator the provided errorOutput and/or try again later.",
-            "errorOutput": err[1] === null ? "" : err[1]
+            "errorOutput": err[1]
         }
     };
 
